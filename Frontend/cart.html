@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ sách chờ mượn</title>
+    
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    
+    <link rel="stylesheet" href="css/header.css">
+    
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+    <header class="header">
+      <a href="/Frontend/book.html" class="logo-container" id="logoHome">
+        <iconify-icon
+          icon="solar:book-open-bold-duotone"
+          style="font-size: 26px"
+        ></iconify-icon>
+        <span>Thư viện sách</span>
+      </a>
+
+      <div class="nav-menu">
+        <div class="search-container">
+          <a href="#" class="nav-item" id="searchToggle">
+            <iconify-icon icon="solar:magnifer-linear"></iconify-icon> Tìm kiếm
+          </a>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Nhập tên sách..."
+          />
+        </div>
+
+        <div class="dropdown" id="categoryDropdown">
+          <a href="#" class="nav-item">
+            <iconify-icon icon="solar:notebook-linear"></iconify-icon> Thể loại
+            sách
+            <iconify-icon
+              icon="solar:alt-arrow-down-linear"
+              style="font-size: 12px"
+            ></iconify-icon>
+          </a>
+          <ul
+            class="dropdown-menu"
+            id="categoryMenu"
+            style="display: none"
+          ></ul>
+        </div>
+
+        <a href="#" class="nav-item">
+          <iconify-icon
+            icon="solar:cart-large-minimalistic-linear"
+          ></iconify-icon>
+          Giỏ hàng
+        </a>
+        <a href="borrow-success.html" class="nav-item">
+          <iconify-icon icon="solar:document-text-linear"></iconify-icon> Phiếu
+        </a>
+      </div>
+
+      <div class="auth-buttons" style="display: flex; align-items: center; gap: 16px;">
+        <a href="cart.html" class="cart-borrow-btn" id="cartBorrowBtn" title="Giỏ sách chờ mượn">
+          <iconify-icon icon="solar:cart-large-minimalistic-linear" style="font-size: 24px; color: #eab389;"></iconify-icon>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+
+        <button class="btn btn-login" id="btnLogin">Đăng nhập</button>
+        <button class="btn btn-register" id="btnRegister">Đăng ký</button>
+
+        <div class="user-menu" id="userMenu">
+          <button class="menu-toggle" id="menuToggle">
+            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+          </button>
+
+          <ul class="user-dropdown" id="userDropdown">
+            <li><a href="#">Thông tin tài khoản</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Quản lý sách</a></li>
+            <li><a href="borrow-success.html">Quản lý mượn sách</a></li>
+            <li><a href="fines.html" style="font-weight: bold; color: #d32f2f;">Quản lý tiền phạt</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="cart-main-container">
+        <div class="cart-wrapper">
+            
+            <h2 class="cart-page-title">
+                <iconify-icon icon="solar:cart-large-minimalistic-linear"></iconify-icon>
+                Giỏ Sách Chờ Mượn
+            </h2>
+
+            <div class="cart-layout">
+                <div class="cart-left-column">
+                    <div class="table-container">
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60%;">Sách</th>
+                                    <th style="width: 25%;">Tác Giả</th>
+                                    <th style="width: 15%; text-align: center;">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="book-info-block">
+                                            <img src="https://via.placeholder.com/56x76" alt="Đất Rừng Phương Nam" class="book-cover-img">
+                                            <div class="book-text">
+                                                <div class="book-name-title">Đất Rừng Phương Nam - Phiên Bản Điện Ảnh</div>
+                                                <div class="book-code-id">S001</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="author-label">Đoàn Giỏi</span></td>
+                                    <td style="text-align: center;">
+                                        <button class="action-delete-btn">
+                                            <iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-bottom-actions">
+                            <a href="home.html" class="btn-back-to-shop">
+                                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Tiếp tục chọn sách
+                            </a>
+                            <button class="btn-clear-all">Xóa tất cả</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-right-column">
+                    <div class="checkout-card">
+                        <div class="checkout-header">
+                            <iconify-icon icon="solar:check-square-linear"></iconify-icon>
+                            Xác Nhận Mượn Sách
+                        </div>
+                        <div class="checkout-body">
+                            <div class="summary-row">
+                                <span>Tổng số sách:</span>
+                                <span class="summary-value">1 Cuốn</span>
+                            </div>
+                            <div class="date-input-group">
+                                <label class="date-label">Ngày trả dự kiến *</label>
+                                <div class="date-picker-wrapper">
+                                    <input type="date" id="expectedReturnDate" class="date-field">
+                                </div>
+                                <span class="date-note">Mặc định mượn 7 ngày.</span>
+                            </div>
+                            <button class="btn-complete-borrow">
+                                <iconify-icon icon="solar:document-text-linear"></iconify-icon> Hoàn Tất Mượn Sách
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="cart-footer">
+        <p>&copy; 2026 Quản Lý Thư Viện. All rights reseved.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

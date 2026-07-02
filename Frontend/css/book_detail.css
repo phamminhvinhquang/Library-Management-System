@@ -1,0 +1,160 @@
+/* ========================================== */
+/* CẤU TRÚC CONTAINER CHÍNH                   */
+/* ========================================== */
+.detail-container {
+  width: 100%;
+  margin: 40px 0;
+  padding: 0 80px; /* Căn lề chuẩn 80px bằng đúng với header */
+  box-sizing: border-box;
+  display: flex;
+  gap: 40px; /* Nới rộng khoảng cách giữa 2 cột cho thoáng */
+  align-items: flex-start;
+}
+
+/* ========================================== */
+/* CỘT BÊN TRÁI: Ảnh & Mô tả (Phần mở rộng)  */
+/* ========================================== */
+.detail-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow: hidden;
+}
+
+/* Khối bao bọc ảnh bìa sách */
+.cover-wrapper {
+  width: 100%;
+  background: #fef5ee;
+  padding: 40px 20px; /* Tăng khoảng không xung quanh ảnh */
+  border-radius: 20px;
+  border: 1px solid #fef5ee;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.03); /* Đổ bóng nhẹ nhàng */
+}
+
+.cover-wrapper img {
+  width: auto;
+  height: 450px; /* Tăng chiều cao ảnh sách lên một chút */
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 4px; /* Sách thường có góc khá vuông */
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15); /* Tạo hiệu ứng sách nổi 3D */
+}
+
+/* Khối mô tả chi tiết */
+.description-block {
+  width: 100%;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid #fef5ee;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.05);
+}
+
+.description-block .section-title {
+  font-size: 18px;
+  color: #2c3e50;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px dashed #eab389; /* Đổi thành nét đứt trông nghệ thuật hơn */
+  padding-bottom: 12px;
+}
+
+.description-block .section-title iconify-icon {
+  color: #eab389;
+  font-size: 24px;
+}
+
+#bookDetail {
+  line-height: 1.8;
+  color: #4a5568;
+  font-size: 15px;
+  white-space: pre-line;
+  text-align: justify;
+}
+
+/* ========================================== */
+/* CỘT BÊN PHẢI: Thông tin (Thanh Sidebar)   */
+/* ========================================== */
+.detail-right {
+  flex: 0 0 320px; /* Tăng nhẹ chiều rộng lên 320px cho cân đối với font chữ */
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 20px;
+  border: 1px solid #fef5ee;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.05);
+  position: sticky; /* Giúp sidebar đứng im khi cuộn phần mô tả dài */
+  top: 100px;
+}
+
+#bookTitle {
+  font-size: 18px; /* Thu nhỏ từ 22px xuống 20px */
+  color: #2c3e50;
+  margin-bottom: 18px; /* Giảm khoảng cách dưới */
+  line-height: 1.4;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 12px; /* Thu nhỏ khoảng cách với đường gạch ngang */
+}
+
+#bookTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: #eab389;
+  border-radius: 2px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: row; /* Đưa tiêu đề và giá trị lên cùng 1 hàng ngang */
+  justify-content: space-between; /* Đẩy tiêu đề qua trái, giá trị qua phải */
+  align-items: flex-start; /* Căn phần đầu mút nếu giá trị quá dài phải xuống dòng */
+  padding: 12px 0; /* Tạo khoảng trống trên dưới cho thoáng */
+  border-bottom: 1px dashed #f1f2f6; /* Đường kẻ đứt ngăn cách */
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: #7f8c8d;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 0; /* Xóa khoảng cách dưới ở code cũ */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0; /* Giúp tiêu đề không bị bóp méo khi màn hình nhỏ */
+}
+
+.info-value {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 15px; /* Giữ 1 khoảng cách an toàn với tiêu đề */
+  text-align: right; /* Căn nội dung sang phải */
+  /* Ở đây mình không dùng white-space: nowrap nữa để nếu Nhà xuất bản hay Tác giả có tên dài, nó sẽ tự động rớt xuống dòng cho gọn gàng bên góc phải */
+}
+
+
+/* Khối nút Mượn sách */
+.btn-borrow {
+  width: 100%;
+  background: #eab389;
+}

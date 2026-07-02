@@ -1,0 +1,234 @@
+/* ========================================== */
+/* HEADER COMPONENT & NAVIGATION              */
+/* ========================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 80px;
+  background-color: #fef5ee;
+  border-bottom: 2px solid #eab389;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #eab389;
+  font-weight: 600;
+  font-size: 19px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #eab389;
+}
+
+.badge {
+  background-color: #e74c3c;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: -2px;
+}
+
+/* ========================================== */
+/* SEARCH COMPONENT                           */
+/* ========================================== */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 100%;
+  margin-right: 15px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.search-input.active {
+  width: 250px;
+  opacity: 1;
+  padding: 8px 15px;
+  border: 1px solid #eab389;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================== */
+/* DROPDOWN MENU (Đã gộp code trùng lặp)       */
+/* ========================================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  list-style: none;
+  min-width: 180px;
+  padding: 10px 0;
+  margin-top: 12px;
+  z-index: 100;
+}
+
+.dropdown-menu li {
+  cursor: pointer;
+}
+
+.dropdown-menu li a,
+.dropdown-menu li {
+  display: block;
+  padding: 10px 18px;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu li a:hover {
+  background-color: #fef5ee;
+  color: #eab389;
+}
+
+/* ========================================== */
+/* BUTTON & USER MENU                         */
+/* ========================================== */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 7px 24px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-login {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: 1px solid #2c3e50;
+}
+
+.btn-login:hover {
+  background-color: #fef5ee;
+  border-color: #eab389;
+  color: #eab389;
+}
+
+.btn-register {
+  background-color: #eab389;
+  color: #ffffff;
+  border: 1px solid #eab389;
+}
+
+.btn-register:hover {
+  background-color: #fef5ee;
+  color: #eab389;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #eab389;
+  background: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.menu-toggle:hover {
+  background: #eab389;
+  color: #ffffff;
+}
+
+.menu-toggle iconify-icon {
+  font-size: 24px;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  padding: 8px 0;
+  z-index: 999;
+}
+
+.user-dropdown.show {
+  display: block;
+}
+
+.user-dropdown li a {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.user-dropdown li a:hover {
+  background: #fef5ee;
+  color: #eab389;
+}

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phiếu Mượn Của Tôi</title>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    
+    <link rel="stylesheet" href="css/header.css">
+    
+    <style>
+        /* ========================================== */
+        /* CẤU TRÚC GIAO DIỆN BẢNG PHIẾU MƯỢN CỦA TÔI  */
+        /* ========================================== */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Khung nội dung chính căn giữa trang phẳng */
+        .tickets-main-container {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+            box-sizing: border-box;
+        }
+
+        /* Tiêu đề trang kết hợp icon bookmark nằm ngang hàng */
+        .page-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .page-title-group iconify-icon {
+            font-size: 28px;
+            color: #333333;
+        }
+
+        .page-title-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000000;
+            margin: 0;
+        }
+
+        /* Hộp bao ngoài bảng phong cách phẳng thanh lịch màu kem nhạt */
+        .table-responsive-wrapper {
+            background-color: #fffaf5; 
+            border: 1px solid #e8dec3;  
+            border-radius: 4px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .custom-tickets-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        /* Tiêu đề cột */
+        .custom-tickets-table th {
+            font-size: 13px;
+            font-weight: 700;
+            color: #333333;
+            padding: 16px 10px;
+            border-bottom: 1px solid #ebdcb9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Từng dòng ô dữ liệu */
+        .custom-tickets-table td {
+            font-size: 14px;
+            color: #444444;
+            padding: 18px 10px;
+            vertical-align: middle;
+        }
+
+        /* Viền kẻ ngang nhạt giữa các dòng */
+        .custom-tickets-table tbody tr:not(:last-child) td {
+            border-bottom: 1px solid #f5ede0;
+        }
+
+        /* Badge số lượng sách vuông góc màu xanh dương */
+        .badge-book-count {
+            display: inline-block;
+            background-color: #2196f3;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        /* Định dạng nhãn trạng thái linh hoạt theo ảnh mẫu */
+        .badge-status {
+            display: inline-block;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-pending { background-color: #ff9800; }   /* Cam - Chờ Duyệt */
+        .status-borrowing { background-color: #ffc107; } /* Vàng - Đang Mượn */
+
+        /* Nút Xem Chi Tiết đồng bộ màu xanh */
+        .btn-action-view {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: #2196f3;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-action-view:hover {
+            background-color: #1976d2;
+        }
+
+        .btn-action-view iconify-icon {
+            font-size: 16px;
+        }
+
+        /* Chân trang xám rộng */
+        .system-footer-gray {
+            text-align: center;
+            padding: 24px 20px;
+            background-color: #f1f1f1;
+            border-top: 1px solid #e3e3e3;
+            color: #666666;
+            font-size: 14px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+      <a href="/Frontend/book.html" class="logo-container" id="logoHome">
+        <iconify-icon
+          icon="solar:book-open-bold-duotone"
+          style="font-size: 26px"
+        ></iconify-icon>
+        <span>Thư viện sách</span>
+      </a>
+
+      <div class="nav-menu">
+        <div class="search-container">
+          <a href="#" class="nav-item" id="searchToggle">
+            <iconify-icon icon="solar:magnifer-linear"></iconify-icon> Tìm kiếm
+          </a>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Nhập tên sách..."
+          />
+        </div>
+
+        <div class="dropdown" id="categoryDropdown">
+          <a href="#" class="nav-item">
+            <iconify-icon icon="solar:notebook-linear"></iconify-icon> Thể loại
+            sách
+            <iconify-icon
+              icon="solar:alt-arrow-down-linear"
+              style="font-size: 12px"
+            ></iconify-icon>
+          </a>
+          <ul
+            class="dropdown-menu"
+            id="categoryMenu"
+            style="display: none"
+          ></ul>
+        </div>
+
+        <a href="#" class="nav-item">
+          <iconify-icon
+            icon="solar:cart-large-minimalistic-linear"
+          ></iconify-icon>
+          Giỏ hàng
+        </a>
+        <a href="borrow-success.html" class="nav-item">
+          <iconify-icon icon="solar:document-text-linear"></iconify-icon> Phiếu
+        </a>
+      </div>
+
+      <div class="auth-buttons" style="display: flex; align-items: center; gap: 16px;">
+        <a href="cart.html" class="cart-borrow-btn" id="cartBorrowBtn" title="Giỏ sách chờ mượn"></a>
+          <iconify-icon icon="solar:cart-large-minimalistic-linear" style="font-size: 24px; color: #eab389;"></iconify-icon>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+
+        <button class="btn btn-login" id="btnLogin">Đăng nhập</button>
+        <button class="btn btn-register" id="btnRegister">Đăng ký</button>
+
+        <div class="user-menu" id="userMenu">
+          <button class="menu-toggle" id="menuToggle">
+            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+          </button>
+
+          <ul class="user-dropdown" id="userDropdown">
+            <li><a href="#">Thông tin tài khoản</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Quản lý sách</a></li>
+            <li><a href="borrow-success.html">Quản lý mượn sách</a></li>
+            <li><a href="fines.html" style="font-weight: bold; color: #d32f2f;">Quản lý tiền phạt</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="tickets-main-container">
+        <div class="page-title-group">
+            <iconify-icon icon="solar:bookmark-linear"></iconify-icon>
+            <h2 class="page-title-text">Phiếu Mượn Của Tôi</h2>
+        </div>
+
+        <div class="table-responsive-wrapper">
+            <table class="custom-tickets-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Mã Phiếu</th>
+                        <th style="width: 20%;">Ngày Mượn</th>
+                        <th style="width: 20%;">Ngày Trả Dự Kiến</th>
+                        <th style="width: 15%;">Số Sách</th>
+                        <th style="width: 15%;">Trạng Thái</th>
+                        <th style="width: 15%;">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody id="ticketTableBody">
+                    <tr>
+                        <td><strong>PM002</strong></td>
+                        <td>24/06/2026</td>
+                        <td>30/06/2026</td>
+                        <td><span class="badge-book-count">1</span></td>
+                        <td><span class="badge-status status-borrowing">Đang Mượn</span></td>
+                        <td>
+                            <a href="#" class="btn-action-view">
+                                <iconify-icon icon="solar:eye-linear"></iconify-icon> Xem Chi Tiết
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="system-footer-gray">
+        <p>&copy; 2026 Quản Lý Thư Viện. All rights reserved.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tableBody = document.getElementById("ticketTableBody");
+            // Lấy danh sách phiếu mượn trong localStorage ra
+            const savedTickets = JSON.parse(localStorage.getItem("myTickets")) || [];
+
+            if (savedTickets.length > 0 && tableBody) {
+                // Duyệt qua từng phiếu mượn được lưu và tạo thẻ HTML tương ứng chèn lên trên cùng
+                savedTickets.forEach(ticket => {
+                    // Nếu trạng thái là 'Chờ Duyệt' dùng màu Cam (status-pending), 'Đang Mượn' dùng màu Vàng (status-borrowing)
+                    const statusClass = (ticket.status === "Chờ Duyệt") ? "status-pending" : "status-borrowing";
+                    
+                    const rowHTML = `
+                        <tr>
+                            <td><strong>${ticket.id}</strong></td>
+                            <td>${ticket.borrowDate}</td>
+                            <td>${ticket.returnDate}</td>
+                            <td><span class="badge-book-count">${ticket.bookCount}</span></td>
+                            <td><span class="badge-status ${statusClass}">${ticket.status}</span></td>
+                            <td>
+                                <a href="#" class="btn-action-view">
+                                    <iconify-icon icon="solar:eye-linear"></iconify-icon> Xem Chi Tiết
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                    // Đưa phiếu mới lên đầu bảng, ngay phía trên dòng PM002 cũ
+                    tableBody.insertAdjacentHTML('afterbegin', rowHTML);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
