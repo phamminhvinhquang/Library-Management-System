@@ -1,0 +1,161 @@
+/* ============================
+   LOGIN PAGE
+============================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fef5ee;
+}
+
+/* ============================
+   LOGIN CONTAINER
+============================ */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+}
+
+/* ============================
+   LOGIN BOX
+============================ */
+
+.login-box {
+    width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.login-box h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* ============================
+   INPUT
+============================ */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.input-group input:focus {
+    border-color: #eab389;
+    outline: none;
+}
+
+/* ============================
+   BUTTON
+============================ */
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #eab389;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #d99a6d;
+}
+
+/* ============================
+   REGISTER LINK
+============================ */
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #eab389;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* ============================
+   PASSWORD
+============================ */
+
+.password-group {
+
+    position: relative;
+
+}
+
+.password-group input {
+
+    width: 100%;
+    padding-right: 45px;
+
+}
+
+.toggle-password {
+
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+/* ============================
+   MESSAGE
+============================ */
+
+.message {
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    color: red;
+
+    font-size: 14px;
+
+}
