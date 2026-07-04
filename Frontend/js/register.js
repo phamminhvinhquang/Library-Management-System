@@ -53,3 +53,43 @@ registerForm.addEventListener("submit", function (event) {
 
     alert("Đăng ký thành công!");
 });
+
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+
+const togglePassword = document.getElementById("togglePassword");
+const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+// Hiện / Ẩn mật khẩu
+togglePassword.addEventListener("click", function () {
+
+    if (password.type === "password") {
+
+        password.type = "text";
+        togglePassword.setAttribute("icon", "solar:eye-linear");
+
+    } else {
+
+        password.type = "password";
+        togglePassword.setAttribute("icon", "solar:eye-closed-linear");
+
+    }
+
+});
+
+// Hiện / Ẩn xác nhận mật khẩu
+toggleConfirmPassword.addEventListener("click", function () {
+
+    if (confirmPassword.type === "password") {
+
+        confirmPassword.type = "text";
+        toggleConfirmPassword.setAttribute("icon", "solar:eye-linear");
+
+    } else {
+
+        confirmPassword.type = "password";
+        toggleConfirmPassword.setAttribute("icon", "solar:eye-closed-linear");
+
+    }
+
+});

@@ -11,14 +11,12 @@ togglePassword.addEventListener("click", function () {
     if (password.type === "password") {
 
         password.type = "text";
-
-        togglePassword.textContent = "🙈";
+        togglePassword.setAttribute("icon", "solar:eye-linear");
 
     } else {
 
         password.type = "password";
-
-        togglePassword.textContent = "👁";
+        togglePassword.setAttribute("icon", "solar:eye-closed-linear");
 
     }
 

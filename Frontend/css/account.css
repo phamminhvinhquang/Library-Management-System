@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.account-container{
+    width:95%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+.page-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+}
+
+.page-title iconify-icon{
+    font-size:42px;
+}
+
+.page-title h1{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.toolbar{
+    background:#eab389;
+    padding:14px;
+    display:flex;
+    gap:15px;
+    align-items:center;
+    border:1px solid #b98762;
+}
+
+.toolbar input{
+    flex:1;
+    height:40px;
+    border:1px solid #d6d6d6;
+    border-radius:6px;
+    padding:0 14px;
+    font-size:15px;
+    transition:all .25s ease;
+}
+
+.toolbar select{
+    width:220px;
+    height:40px;
+    border:1px solid #d6d6d6;
+    border-radius:6px;
+    padding:0 10px;
+    font-size:15px;
+    cursor:pointer;
+    transition:all .25s ease;
+}
+
+.toolbar button{
+    width:180px;
+    height:40px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+#searchBtn{
+    background:#1e88e5;
+}
+
+#refreshBtn{
+    background:#a1887f;
+}
+
+.toolbar button:hover{
+    opacity:.9;
+}
+
+.table-wrapper{
+    background:#f7f1eb;
+    border:1px solid #c8b7a6;
+    padding:15px;
+}
+
+#accountTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#accountTable thead{
+    background:#e7dbcf;
+}
+
+#accountTable th{
+    text-align:left;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    border-bottom:2px solid #b8a898;
+}
+
+#accountTable td{
+    padding:14px;
+    border-bottom:1px solid #cfcfcf;
+    font-size:15px;
+}
+
+/* Badge vai trò */
+
+.role{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:5px;
+    color:#fff;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.admin{
+    background:#ff2d2d;
+}
+
+.reader{
+    background:#1e88e5;
+}
+
+
+/* Badge trạng thái */
+
+.status{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:5px;
+    color:#fff;
+    font-size:13px;
+}
+
+.active{
+    background:#36c84a;
+}
+
+
+/* Nút thao tác */
+
+.action-buttons{
+    display:flex;
+    gap:6px;
+}
+
+.action-buttons button{
+    width:32px;
+    height:32px;
+    border:none;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+.view-btn{
+    background:#1db7ea;
+}
+
+.edit-btn{
+    background:#ffd43b;
+}
+
+.delete-btn{
+    background:#ff4d4d;
+}
+
+.action-buttons iconify-icon{
+    font-size:18px;
+    color:#000;
+}
+
+/* Hover từng dòng trong bảng */
+
+#accountTable tbody tr:hover{
+
+    background:#fdf3ea;
+
+}
+
+/* Hiệu ứng cho các nút thao tác */
+
+.action-buttons button{
+
+    transition:all .2s ease;
+
+}
+
+.action-buttons button:hover{
+
+    transform:scale(1.1);
+
+}
+
+.view-btn:hover{
+
+    background:#00a6d6;
+
+}
+
+.edit-btn:hover{
+
+    background:#ffc107;
+
+}
+
+.delete-btn:hover{
+
+    background:#e53935;
+
+}
+
+/* Hiệu ứng khi chọn ô tìm kiếm */
+
+.toolbar input:focus{
+
+    outline:none;
+    border-color:#1e88e5;
+    box-shadow:0 0 6px rgba(30,136,229,.35);
+
+}
+
+/* Hiệu ứng khi chọn ô vai trò */
+
+.toolbar select:focus{
+
+    outline:none;
+    border-color:#1e88e5;
+    box-shadow:0 0 6px rgba(30,136,229,.35);
+
+}
