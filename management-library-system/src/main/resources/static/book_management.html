@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Sách - Thư Viện Sách</title>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="css/book_management.css" />
+  </head>
+  <body>
+    <div class="management-container">
+      <a href="index.html" class="back-link">
+        <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> Trở về
+        trang chủ
+      </a>
+
+      <div class="management-header">
+        <div class="header-left">
+          <iconify-icon icon="solar:book-bookmark-bold-duotone"></iconify-icon>
+          <h2>Quản Lý Sách</h2>
+        </div>
+        <button class="btn-add-book">
+          <iconify-icon icon="ph:plus-circle-bold"></iconify-icon> Thêm Sách
+        </button>
+      </div>
+
+      <div class="management-card">
+        <div class="toolbar">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Tìm kiếm theo tên sách, mã sách, nhà xuất bản, tác giả..."
+          />
+          <button id="btnSearch" class="btn-search">
+            <iconify-icon icon="ph:magnifying-glass-bold"></iconify-icon> Tìm
+            Kiếm
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="book-table">
+            <thead>
+              <tr>
+                <th>Mã Sách</th>
+                <th>Tiêu Đề</th>
+                <th>Tác Giả</th>
+                <th>Loại Sách</th>
+                <th>Nhà Xuất Bản</th>
+                <th>Năm</th>
+                <th>Số Lượng</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="bookTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="addBookModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #fff;
+          padding: 30px;
+          border-radius: 12px;
+          width: 600px;
+          max-width: 90%;
+          border: 2px solid #0084ff;
+        "
+      >
+        <h3 style="margin-bottom: 20px; color: #2c3e50; text-align: center">
+          Thêm Sách Mới
+        </h3>
+        <form id="addBookForm">
+          <div style="margin-bottom: 12px">
+            <label>Tiêu đề sách:</label>
+            <input
+              type="text"
+              id="addBookName"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+              "
+            />
+          </div>
+          <div style="display: flex; gap: 15px; margin-bottom: 12px">
+            <div style="flex: 1">
+              <label>Tác giả:</label>
+              <input
+                type="text"
+                id="addAuthor"
+                placeholder="Tên tác giả..."
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  margin-top: 5px;
+                  border: 1px solid #ccc;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+            <div style="flex: 1">
+              <label>Năm xuất bản:</label>
+              <input
+                type="number"
+                id="addYear"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  margin-top: 5px;
+                  border: 1px solid #ccc;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+          </div>
+          <div style="display: flex; gap: 15px; margin-bottom: 12px">
+            <div style="flex: 1">
+              <label>Thể loại:</label>
+              <input
+                type="text"
+                id="addCategory"
+                placeholder="Thể loại..."
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  margin-top: 5px;
+                  border: 1px solid #ccc;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+            <div style="flex: 1">
+              <label>Nhà xuất bản:</label>
+              <input
+                type="text"
+                id="addPublisher"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  margin-top: 5px;
+                  border: 1px solid #ccc;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+          </div>
+          <div style="margin-bottom: 12px">
+            <label style="font-weight: bold; color: #2c3e50"
+              >Số lượng sách nhập kho:</label
+            >
+            <input
+              type="number"
+              id="addQuantity"
+              min="1"
+              value="1"
+              required
+              placeholder="Nhập số lượng..."
+              style="
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #0084ff;
+                border-radius: 6px;
+                font-weight: bold;
+              "
+            />
+          </div>
+          <div style="margin-bottom: 12px">
+            <label>Ảnh bìa sách:</label>
+            <input
+              type="file"
+              id="addCoverFile"
+              accept="image/*"
+              style="display: none"
+            />
+            <button
+              type="button"
+              onclick="document.getElementById('addCoverFile').click()"
+              style="
+                display: block;
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px dashed #0084ff;
+                background: #f0f8ff;
+                cursor: pointer;
+              "
+            >
+              Chọn ảnh từ máy tính
+            </button>
+            <img
+              id="addCoverPreview"
+              src=""
+              style="
+                width: 100px;
+                height: 140px;
+                margin-top: 10px;
+                display: none;
+                object-fit: cover;
+                border: 1px solid #ccc;
+              "
+            />
+          </div>
+          <div style="margin-bottom: 20px">
+            <label>Chi tiết sách:</label>
+            <textarea
+              id="addDetail"
+              rows="4"
+              style="
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+              "
+            ></textarea>
+          </div>
+          <div style="text-align: right">
+            <button
+              type="button"
+              onclick="closeAddModal()"
+              style="
+                padding: 10px 20px;
+                border: none;
+                background: #7f8c8d;
+                color: #fff;
+                border-radius: 6px;
+                cursor: pointer;
+              "
+            >
+              Hủy
+            </button>
+            <button
+              type="submit"
+              style="
+                padding: 10px 20px;
+                border: none;
+                background: #0084ff;
+                color: #fff;
+                font-weight: bold;
+                border-radius: 6px;
+                cursor: pointer;
+                margin-left: 10px;
+              "
+            >
+              Lưu Sách
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/book_management.js"></script>
+  </body>
+</html>

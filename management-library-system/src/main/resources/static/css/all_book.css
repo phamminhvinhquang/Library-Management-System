@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #2c3e50;
+}
+
+iconify-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.btn {
+  padding: 7px 24px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* ========================================== */
+/* 2. MAIN CONTENT (Tất Cả Sách)              */
+/* ========================================== */
+.section-all-books {
+  padding: 40px 80px; /* Padding đồng bộ với Header */
+  min-height: 70vh;
+  background-color: #fdf8f4;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.page-header {
+  margin-bottom: 30px;
+}
+.page-title {
+  background-color: #eab389;
+  color: #ffffff;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+}
+.breadcrumb a {
+  color: #d99a6c;
+  text-decoration: none;
+}
+.breadcrumb .current {
+  font-weight: 600;
+  color: #333;
+}
+
+.category-group {
+  margin-bottom: 50px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 2px solid #eab389;
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+}
+.category-title span.count {
+  font-size: 14px;
+  background: #fdf8f4;
+  color: #d99a6c;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+}
+.book-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f0f0;
+}
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(234, 179, 137, 0.2);
+}
+.card-img-wrapper {
+  height: 280px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+  padding: 10px;
+}
+.card-img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+.card-author {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.book-borrow-count {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.btn-borrow {
+  background: #eab389;
+  color: #ffffff;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s;
+}
+.btn-borrow:hover {
+  background: #d99a6c;
+}
+.btn-detail {
+  background: transparent;
+  color: #eab389;
+  border: 1px solid #eab389;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn-detail:hover {
+  background: #fdf8f4;
+}

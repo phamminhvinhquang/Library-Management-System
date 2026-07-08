@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+body {
+  background-color: #fef5ee; /* Nền kem chủ đạo */
+  padding: 30px;
+  color: #2c3e50;
+}
+
+.management-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #eab389;
+}
+
+.management-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-left iconify-icon {
+  font-size: 32px;
+  color: #000;
+}
+
+.header-left h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #000;
+}
+
+.btn-add-book {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.btn-add-book:hover {
+  background-color: #006bce;
+}
+
+.management-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* ================== TOOLBAR ================== */
+.toolbar {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 14.5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #0084ff;
+}
+
+.btn-search {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.btn-search:hover {
+  background-color: #006bce;
+}
+
+/* ================== TABLE ================== */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.book-table th,
+.book-table td {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.book-table th {
+  font-weight: 600;
+  color: #000;
+  background-color: #fafafa;
+}
+
+.book-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+
+.book-table td {
+  font-weight: 500;
+  color: #333;
+}
+
+/* ================== BADGES ================== */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.badge-author {
+  background-color: #7f8c8d;
+}
+.badge-category {
+  background-color: #3498db;
+}
+.badge-quantity {
+  background-color: #2ecc71;
+}
+
+/* ================== ACTION BUTTONS ================== */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-action {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: opacity 0.2s;
+}
+
+.btn-action:hover {
+  opacity: 0.8;
+}
+
+.btn-view {
+  background-color: #00bcd4;
+} /* Cyan */
+.btn-edit {
+  background-color: #ffc107;
+  color: #000;
+} /* Vàng */
+.btn-delete {
+  background-color: #ff4d4d;
+} /* Đỏ */

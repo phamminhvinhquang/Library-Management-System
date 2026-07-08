@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sách - Hệ thống thư viện</title>
+    <link rel="stylesheet" href="css/book.css" />
+    <link rel="stylesheet" href="css/book_detail.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html" class="logo-container" id="logoHome">
+        <iconify-icon
+          icon="solar:book-open-bold-duotone"
+          style="font-size: 26px"
+        ></iconify-icon>
+        <span>Thư viện sách</span>
+      </a>
+
+      <div class="nav-menu">
+        <div class="search-container">
+          <a href="#" class="nav-item" id="searchToggle">
+            <iconify-icon icon="solar:magnifer-linear"></iconify-icon> Tìm kiếm
+          </a>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Nhập tên sách..."
+          />
+        </div>
+
+        <div class="dropdown" id="categoryDropdown">
+          <a href="#" class="nav-item">
+            <iconify-icon icon="solar:notebook-linear"></iconify-icon> Thể loại
+            sách
+            <iconify-icon
+              icon="solar:alt-arrow-down-linear"
+              style="font-size: 12px"
+            ></iconify-icon>
+          </a>
+          <ul
+            class="dropdown-menu"
+            id="categoryMenu"
+            style="display: none"
+          ></ul>
+        </div>
+
+        <a href="borrow-success.html" class="nav-item">
+          <iconify-icon icon="solar:document-text-linear"></iconify-icon> Phiếu
+        </a>
+        <a
+          href="cart.html"
+          class="cart-borrow-btn"
+          id="cartBorrowBtn"
+          title="Giỏ sách chờ mượn"
+        >
+          <iconify-icon
+            icon="solar:cart-large-minimalistic-linear"
+            style="font-size: 24px; color: #000"
+          ></iconify-icon>
+          Giỏ hàng
+        </a>
+      </div>
+
+      <div
+        class="auth-buttons"
+        style="display: flex; align-items: center; gap: 16px"
+      >
+        <button class="btn btn-login" id="btnLogin">Đăng nhập</button>
+        <button class="btn btn-register" id="btnRegister">Đăng ký</button>
+
+        <div class="user-menu" id="userMenu">
+          <button class="menu-toggle" id="menuToggle">
+            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+          </button>
+
+          <ul class="user-dropdown" id="userDropdown">
+            <li><a href="#">Thông tin tài khoản</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Quản lý sách</a></li>
+            <li><a href="borrow-success.html">Quản lý mượn sách</a></li>
+            <li>
+              <a href="fines.html" style="font-weight: bold; color: #d32f2f"
+                >Quản lý tiền phạt</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="detail-container">
+      <div class="detail-left">
+        <div class="cover-wrapper">
+          <img id="bookCover" src="images/default-cover.jpg" alt="Bìa sách" />
+        </div>
+
+        <div class="description-block">
+          <h3 class="block-title">
+            <iconify-icon icon="solar:document-text-linear"></iconify-icon> Tóm
+            tắt & Mô tả chi tiết
+          </h3>
+          <p id="bookDetail" class="book-description">
+            Đang tải dữ liệu tóm tắt nội dung sách...
+          </p>
+        </div>
+      </div>
+
+      <div class="detail-right">
+        <h1 id="bookTitle">Đang tải tên sách...</h1>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Tác giả</span>
+            <span id="bookAuthors" class="info-value">Đang cập nhật...</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Thể loại</span>
+            <span id="bookCategory" class="info-value">Đang cập nhật...</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Nhà xuất bản</span>
+            <span id="bookPublisher" class="info-value">Đang cập nhật...</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Năm xuất bản</span>
+            <span id="bookYear" class="info-value">Đang cập nhật...</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Số lượng còn lại</span>
+            <span id="bookQuantity" class="info-value">0 quyển</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Tổng số lượt mượn</span>
+            <span id="bookBorrowCount" class="info-value">0 lượt</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button
+            class="btn-borrow"
+            id="detailBorrowBtn"
+            data-id=""
+            data-title=""
+            data-image=""
+            data-author=""
+          >
+            <iconify-icon
+              icon="solar:cart-large-minimalistic-linear"
+            ></iconify-icon>
+            <span>Mượn sách này</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column-main">
+          <div class="footer-logo">
+            <iconify-icon icon="solar:book-open-bold-duotone"></iconify-icon>
+            <span>Thư viện sách điện tử</span>
+          </div>
+          <p class="footer-desc">
+            Hệ thống hỗ trợ tìm kiếm mượn và trả sách trực tuyến thuộc nền tảng
+            quản lý thư viện trường học hiện đại mượt mà và thông minh.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title">Khám phá thư viện</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="#"
+                ><iconify-icon
+                  icon="solar:home-smile-angle-linear"
+                ></iconify-icon>
+                Trang chủ</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><iconify-icon icon="solar:notebook-linear"></iconify-icon> Thể
+                loại sách</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><iconify-icon icon="solar:fire-linear"></iconify-icon> Sách
+                mượn nhiều</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title">Liên hệ & Hỗ trợ</h4>
+          <ul class="footer-contact">
+            <li>
+              <iconify-icon icon="solar:map-point-linear"></iconify-icon>
+              <span>Trường Đại học Giao Thông Vận Tải TP. Hồ Chí Minh</span>
+            </li>
+            <li>
+              <iconify-icon icon="solar:phone-linear"></iconify-icon>
+              <span>+84 123 456 789</span>
+            </li>
+            <li>
+              <iconify-icon icon="solar:clock-square-linear"></iconify-icon>
+              <span>Thứ 2 - Thứ 7: 08:00 - 21:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/book_detail.js"></script>
+    <script src="js/book.js"></script>
+    <script src="js/header.js"></script>
+  </body>
+</html>

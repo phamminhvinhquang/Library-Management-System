@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+body {
+  background-color: #fef5ee; /* Đồng bộ nền màu kem dịu nhẹ như Header */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 2px solid #eab389; /* Khung viền màu cam pastel đồng bộ */
+  box-shadow: 0 10px 30px rgba(234, 179, 137, 0.15);
+}
+
+.back-link {
+  text-decoration: none;
+  color: #000;
+}
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-logo {
+  font-size: 48px;
+  color: #eab389;
+  margin-bottom: 12px;
+}
+
+.auth-header h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.auth-header p {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper iconify-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 20px;
+  color: #eab389;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 45px;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  font-size: 14.5px;
+  color: #2c3e50;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: #eab389;
+  box-shadow: 0 0 0 3px rgba(234, 179, 137, 0.2);
+}
+
+.btn-auth {
+  width: 100%;
+  background-color: #eab389;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.25s ease;
+}
+
+.btn-auth:hover {
+  background-color: #d4763b;
+  box-shadow: 0 5px 15px rgba(212, 118, 59, 0.3);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.auth-footer a {
+  color: #eab389;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+  color: #d4763b;
+}

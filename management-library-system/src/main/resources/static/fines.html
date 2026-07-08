@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Tiền Phạt</title>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+    <link rel="stylesheet" href="css/header.css" />
+
+    <style>
+      /* ========================================== */
+      /* CẤU TRÚC GIAO DIỆN TRANG QUẢN LÝ TIỀN PHẠT  */
+      /* ========================================== */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Khung nội dung chính căn giữa */
+      .fines-main-container {
+        flex: 1;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 50px 20px;
+        box-sizing: border-box;
+      }
+
+      /* Cụm tiêu đề trang (Icon Ví Tiền + Chữ) */
+      .page-title-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 35px;
+      }
+
+      .page-title-group iconify-icon {
+        font-size: 28px;
+        color: #d32f2f;
+      }
+
+      .page-title-text {
+        font-size: 24px;
+        font-weight: 700;
+        color: #000000;
+        margin: 0;
+      }
+
+      /* Hộp bao ngoài bảng phong cách phẳng màu kem nhạt quý phái */
+      .table-responsive-wrapper {
+        background-color: #fffaf5;
+        border: 1px solid #e8dec3;
+        border-radius: 4px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      }
+
+      .custom-fines-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      /* Tiêu đề cột */
+      .custom-fines-table th {
+        font-size: 13px;
+        font-weight: 700;
+        color: #333333;
+        padding: 16px 10px;
+        border-bottom: 1px solid #ebdcb9;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Từng dòng ô dữ liệu */
+      .custom-fines-table td {
+        font-size: 14px;
+        color: #444444;
+        padding: 18px 10px;
+        vertical-align: middle;
+      }
+
+      /* Viền kẻ ngang nhạt giữa các dòng */
+      .custom-fines-table tbody tr:not(:last-child) td {
+        border-bottom: 1px solid #f5ede0;
+      }
+
+      /* Định dạng cột hiển thị số tiền */
+      .text-price {
+        color: #d32f2f;
+        font-weight: 700;
+      }
+
+      /* Định dạng nhãn trạng thái phạt bo góc */
+      .badge-status {
+        display: inline-block;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 6px 14px;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+      }
+
+      .status-unpaid {
+        background-color: #f44336;
+      } /* Đỏ - Chưa Thanh Toán */
+      .status-paid {
+        background-color: #4caf50;
+      } /* Xanh lá - Đã Thanh Toán */
+
+      /* Chân trang xám rộng */
+      .system-footer-gray {
+        text-align: center;
+        padding: 24px 20px;
+        background-color: #f1f1f1;
+        border-top: 1px solid #e3e3e3;
+        color: #666666;
+        font-size: 14px;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html" class="logo-container" id="logoHome">
+        <iconify-icon
+          icon="solar:book-open-bold-duotone"
+          style="font-size: 26px"
+        ></iconify-icon>
+        <span>Thư viện sách</span>
+      </a>
+
+      <div class="nav-menu">
+        <div class="search-container">
+          <a href="#" class="nav-item" id="searchToggle">
+            <iconify-icon icon="solar:magnifer-linear"></iconify-icon> Tìm kiếm
+          </a>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Nhập tên sách..."
+          />
+        </div>
+
+        <div class="dropdown" id="categoryDropdown">
+          <a href="#" class="nav-item">
+            <iconify-icon icon="solar:notebook-linear"></iconify-icon> Thể loại
+            sách
+            <iconify-icon
+              icon="solar:alt-arrow-down-linear"
+              style="font-size: 12px"
+            ></iconify-icon>
+          </a>
+          <ul
+            class="dropdown-menu"
+            id="categoryMenu"
+            style="display: none"
+          ></ul>
+        </div>
+
+        <a href="borrow-success.html" class="nav-item">
+          <iconify-icon icon="solar:document-text-linear"></iconify-icon> Phiếu
+        </a>
+        <a
+          href="cart.html"
+          class="cart-borrow-btn"
+          id="cartBorrowBtn"
+          title="Giỏ sách chờ mượn"
+        >
+          <iconify-icon
+            icon="solar:cart-large-minimalistic-linear"
+            style="font-size: 24px; color: #000"
+          ></iconify-icon>
+          Giỏ hàng
+        </a>
+      </div>
+
+      <div
+        class="auth-buttons"
+        style="display: flex; align-items: center; gap: 16px"
+      >
+        <button class="btn btn-login" id="btnLogin">Đăng nhập</button>
+        <button class="btn btn-register" id="btnRegister">Đăng ký</button>
+
+        <div class="user-menu" id="userMenu">
+          <button class="menu-toggle" id="menuToggle">
+            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+          </button>
+
+          <ul class="user-dropdown" id="userDropdown">
+            <li><a href="#">Thông tin tài khoản</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Quản lý sách</a></li>
+            <li><a href="borrow-success.html">Quản lý mượn sách</a></li>
+            <li>
+              <a href="fines.html" style="font-weight: bold; color: #d32f2f"
+                >Quản lý tiền phạt</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="fines-main-container">
+      <div class="page-title-group">
+        <iconify-icon icon="solar:wallet-money-bold"></iconify-icon>
+        <h2 class="page-title-text">Quản Lý Tiền Phạt</h2>
+      </div>
+
+      <div class="table-responsive-wrapper">
+        <table class="custom-fines-table">
+          <thead>
+            <tr>
+              <th style="width: 15%">Mã Phiếu</th>
+              <th style="width: 30%">Người Mượn</th>
+              <th style="width: 20%">Số Ngày Quá Hạn</th>
+              <th style="width: 15%">Tiền Phạt</th>
+              <th style="width: 20%">Trạng Thái</th>
+            </tr>
+          </thead>
+          <tbody id="fineTableBody">
+            <tr>
+              <td><strong>PM001</strong></td>
+              <td>Trả sách "Cấu trúc máy tính" quá hạn</td>
+              <td>3 ngày</td>
+              <td><span class="text-price">15.000 đ</span></td>
+              <td>
+                <span class="badge-status status-unpaid">Chưa Thanh Toán</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="system-footer-gray">
+      <p>&copy; 2026 Quản Lý Thư Viện. All rights reserved.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const tableBody = document.getElementById("fineTableBody");
+
+        // Gọi API thực tế từ Backend Spring Boot (Cổng 8086)
+        fetch("http://localhost:8086/api/fines")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Không thể kết nối đến API hệ thống");
+            }
+            return response.json();
+          })
+          .then((realFines) => {
+            if (tableBody) {
+              // Xóa bỏ dòng dữ liệu mẫu PM001 ban đầu đi
+              tableBody.innerHTML = "";
+
+              if (realFines.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5" style="padding: 20px; color: #888; font-weight: 500;">Hiện tại chưa có dữ liệu phạt nào trong Database MySQL.</td></tr>`;
+                return;
+              }
+
+              realFines.forEach((fine) => {
+                const isPaid = fine.status === "PAID";
+                const statusClass = isPaid ? "status-paid" : "status-unpaid";
+                const statusText = isPaid ? "Đã Thanh Toán" : "Chưa Thanh Toán";
+                const formattedAmount =
+                  Number(fine.fineAmount).toLocaleString("vi-VN") + " đ";
+                const displayDate = fine.fineDate ? fine.fineDate : "Chưa rõ";
+
+                const rowHTML = `
+                        <tr>
+                            <td><strong>PM-${fine.fineID}</strong></td>
+                            <td>${fine.reason} <br><small style="color: #888;">Ngày ghi nhận: ${displayDate}</small></td>
+                            <td>Theo dõi phiếu mượn</td>
+                            <td><span class="text-price">${formattedAmount}</span></td>
+                            <td><span class="badge-status ${statusClass}">${statusText}</span></td>
+                        </tr>
+                    `;
+                tableBody.insertAdjacentHTML("afterbegin", rowHTML);
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Lỗi kết nối API:", error);
+            if (tableBody) {
+              tableBody.innerHTML = `<tr><td colspan="5" style="color: red; padding: 20px;">Lỗi kết nối Server Backend! Bạn đã bật Spring Boot chưa?</td></tr>`;
+            }
+          });
+      });
+
+      // Hàm hỗ trợ giả lập test thử tính năng sinh dữ liệu phạt tự động
+      function createDemoFine(ticketCode, overdueDays, reasonText) {
+        const fineRatePerDay = 5000; // Quy định 5.000đ một ngày quá hạn
+        const totalFine = overdueDays * fineRatePerDay;
+
+        const demoData = {
+          ticketId: ticketCode,
+          reason: reasonText,
+          overdueDays: overdueDays,
+          amount: totalFine,
+          status: "Chưa Thanh Toán",
+        };
+
+        let currentFines = JSON.parse(localStorage.getItem("myFines")) || [];
+        currentFines.push(demoData);
+        localStorage.setItem("myFines", JSON.stringify(currentFines));
+
+        // Tải lại trang để thấy kết quả lập tức
+        window.location.reload();
+      }
+
+      // Cách test: Bạn bấm F12 trên trình duyệt, gõ lệnh bên dưới vào tab Console rồi nhấn Enter:
+      // createDemoFine("PM9842", 5, "Trả sách Toán rời rạc muộn");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,452 @@
+/* ========================================== */
+/* 1. RESET & BASE CONFIG                     */
+/* ========================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+iconify-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+/* ========================================== */
+/* 2. HOMEPAGE SECTIONS                       */
+/* ========================================== */
+.section-banner,
+.banner-container {
+  width: 100%;
+}
+
+.banner-img {
+  width: 100%;
+  height: calc(100vh - 60px);
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid #3498db;
+}
+
+/* ========================================== */
+/* 3. SECTION LIST LAYOUT                     */
+/* ========================================== */
+.section-list {
+  display: flex;
+  width: 100%;
+  margin: 40px 0;
+  padding: 0 80px;
+  gap: 40px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* --- SIDEBAR LEFT --- */
+.content-left {
+  flex: 0 0 300px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.05);
+  border: 1px solid #fef5ee;
+}
+
+.filter-group {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #fef5ee;
+  padding-bottom: 16px;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15.5px;
+  color: #2c3e50;
+}
+
+.filter-list {
+  list-style: none;
+  padding-left: 28px;
+  margin-top: 12px;
+}
+
+.filter-list li {
+  margin-bottom: 8px;
+}
+
+.filter-list li a {
+  text-decoration: none;
+  color: #2c3e50;
+  opacity: 0.8;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.filter-list li a:hover {
+  color: #eab389;
+  opacity: 1;
+  padding-left: 4px;
+}
+
+.filter-header:hover .filter-title,
+.filter-header:hover iconify-icon {
+  color: #eab389;
+}
+
+/* --- TOP BOOKS RANKING --- */
+.top-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 16px;
+}
+
+.top-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: #fef5ee;
+  border-radius: 10px;
+}
+
+.rank-number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.rank-1 {
+  background-color: #eab389;
+}
+.rank-2 {
+  background-color: #eab389;
+  opacity: 0.8;
+}
+.rank-3 {
+  background-color: #eab389;
+  opacity: 0.6;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.book-info .book-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.book-info .borrow-count {
+  font-size: 11px;
+  color: #2c3e50;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ========================================== */
+/* 4. GRID CONTENT RIGHT & SLIDER LAYOUT      */
+/* ========================================== */
+.content-right {
+  flex: 1;
+  overflow: hidden;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.heading-badge {
+  display: inline-block;
+  background-color: #eab389;
+  color: #ffffff;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 16px 16px 16px 0px;
+  margin-bottom: 12px;
+}
+
+.heading-subtitle {
+  font-size: 14px;
+  color: #2c3e50;
+  opacity: 0.8;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.btn-nav {
+  position: absolute;
+  top: 144px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #eab389;
+  background-color: #ffffff;
+  color: #eab389;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-nav.prev {
+  left: -4px;
+}
+.btn-nav.next {
+  right: -4px;
+}
+
+.btn-nav:hover {
+  background-color: #eab389;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(234, 179, 137, 0.4);
+}
+
+.books-slider-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.books-slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+.books-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 48px) / 3);
+  gap: 24px;
+  padding: 4px 0;
+}
+
+/* --- BOOK CARD SYSTEM --- */
+.book-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.04);
+  border: 1px solid rgba(234, 179, 137, 0.15);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(234, 179, 137, 0.2);
+}
+
+.card-img-wrapper {
+  width: 100%;
+  height: 280px;
+  background-color: #f9f9f9;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.card-author {
+  font-size: 13px;
+  color: #2c3e50;
+  opacity: 0.6;
+  margin-bottom: 2px;
+}
+
+.card-category {
+  font-size: 12px;
+  color: #eab389;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.book-borrow-count {
+  font-size: 12px;
+  color: #7f8c8d;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-borrow {
+  background-color: #eab389;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.btn-borrow:hover {
+  background-color: #d4763b;
+}
+
+.btn-detail {
+  background-color: #fef5ee;
+  color: #eab389;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-detail:hover {
+  background-color: #eab389;
+  color: #ffffff;
+}
+
+/* ========================================== */
+/* 5. NEW BOOK LIST                           */
+/* ========================================== */
+.section-new-list {
+  padding: 50px 80px;
+  background: #fef5ee;
+}
+
+.new-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.new-list-badge {
+  display: inline-block;
+  background: #eab389;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 16px 16px 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.view-all-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #eab389;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid #eab389;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.25s ease;
+}
+
+.view-all-link:hover {
+  background: #eab389;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.new-books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.new-books-grid .book-card {
+  height: 100%;
+}

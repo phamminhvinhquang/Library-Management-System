@@ -1,0 +1,367 @@
+/* ========================================== */
+/* LAYOUT CHÍNH TRANG GIỎ HÀNG                */
+/* ========================================== */
+.cart-main-container {
+  padding: 60px 80px;
+  background-color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cart-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Tiêu đề trang */
+.cart-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 26px;
+  color: #000000;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.cart-page-title iconify-icon {
+  font-size: 32px;
+}
+
+/* Định dạng layout 2 cột */
+.cart-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.cart-left-column {
+  flex: 2;
+}
+
+.cart-right-column {
+  flex: 1;
+  max-width: 400px;
+}
+
+
+/* ========================================== */
+/* STYLE CỤM HEADER ĐỒNG BỘ TRANG CHÍNH       */
+/* ========================================== */
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Kiểu dáng nút giỏ hàng hình tròn trên header */
+.cart-circle-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: #ffffff;
+  border: 1px solid #eab389;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-circle-btn iconify-icon {
+  font-size: 20px;
+  color: #eab389;
+}
+
+/* Badge số 0 nhỏ màu đỏ cam */
+.cart-circle-btn .badge-count {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background-color: #ff6b6b;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ========================================== */
+/* CẤU TRÚC BẢNG DANH SÁCH SÁCH BÊN TRÁI      */
+/* ========================================== */
+.table-container {
+  border: 1px solid #e0d5cb;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #faf6f0; /* Màu nền ấm nhẹ */
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* --- ĐÃ SỬA: Phân chia tỷ lệ % độ rộng cho 3 cột thẳng đều tăm tắp --- */
+/* --- CỘT 1: THÔNG TIN SÁCH --- */
+.items-table th:nth-child(1), 
+.items-table td:nth-child(1) {
+  width: 50%;         /* Chiếm nửa chiều rộng bảng */
+  text-align: left;   /* Cùng căn lề trái */
+}
+
+/* --- CỘT 2: TÁC GIẢ (ĐỒNG BỘ CĂN GIỮA) --- */
+.items-table th:nth-child(2), 
+.items-table td:nth-child(2) {
+  width: 45%;         /* Chiếm không gian vừa vặn ở giữa */
+  text-align: center; /* Tiêu đề "Tác Giả" và nhãn tên tác giả cùng canh giữa */
+}
+
+/* --- CỘT 3: THAO TÁC (ĐỒNG BỘ CĂN GIỮA) --- */
+.items-table th:nth-child(3), 
+.items-table td:nth-child(3) {
+  width: 35%;         /* Không gian thoải mái cho nút xóa */
+  text-align: center; /* Tiêu đề "Thao Tác" và nút "Xóa" cùng canh giữa */
+}
+
+.items-table th {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  color: #333333;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.items-table td {
+  padding: 20px 0;
+  border-bottom: 1px solid #e8e2da;
+  vertical-align: middle;
+}
+
+/* --- ĐÃ SỬA: Đảm bảo cột nút xóa bên dưới cũng được căn giữa khớp với tiêu đề --- */
+.items-table td:nth-child(3) {
+  text-align: center;
+}
+
+/* Khối hiển thị thông tin sách */
+.book-info-block {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.book-cover-img {
+  width: 56px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.book-name-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #007bff; /* Tên sách màu xanh blue giống liên kết */
+  cursor: pointer;
+}
+
+.book-code-id {
+  font-size: 13px;
+  color: #888888;
+  margin-top: 4px;
+}
+
+/* Nhãn tác giả */
+.author-label {
+  display: inline-block; /* Giúp căn giữa chuẩn xác theo text-align: center */
+  background-color: #dbdbdb;
+  color: #333;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;   /* Giữ tên tác giả trên một dòng */
+}
+
+/* Nút xóa item lẻ */
+.action-delete-btn {
+  display: inline-flex;  /* Tạo flexbox để căn icon và chữ song song */
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.action-delete-btn:hover {
+  background-color: #d9534f;
+  color: #ffffff;
+}
+
+/* Hàng nút chức năng bên dưới bảng */
+.table-bottom-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-back-to-shop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #eab389;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-clear-all {
+  background: none;
+  border: 1px solid #d9534f;
+  color: #d9534f;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+/* ========================================== */
+/* CẤU TRÚC CARD XÁC NHẬN MƯỢN SÁCH BÊN PHẢI   */
+/* ========================================== */
+.checkout-card {
+  border: 1px solid #e0d5cb;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #faf6f0;
+}
+
+.checkout-header {
+  background-color: #eab389; /* Màu cam chủ đạo */
+  color: #ffffff;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkout-body {
+  padding: 20px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.summary-value {
+  font-weight: bold;
+}
+
+/* Ô nhập chọn ngày mượn */
+.date-input-group {
+  margin-bottom: 25px;
+}
+
+.date-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.date-picker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.date-field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 12px;
+  font-size: 18px;
+  color: #666;
+}
+
+.date-note {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin-top: 6px;
+}
+
+/* Nút hoàn tất lớn */
+.btn-complete-borrow {
+  width: 100%;
+  background-color: #eab389;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+
+/* ========================================== */
+/* FOOTER HỆ THỐNG                            */
+/* ========================================== */
+.cart-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-top: 1px solid #e3e3e3;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Thu nhỏ ảnh bìa sách trong bảng giỏ hàng gọn gàng */
+.item-thumbnail {
+  width: 50px !important;       /* Định kích thước chiều rộng cố định */
+  height: 70px !important;      /* Định kích thước chiều cao cố định theo tỷ lệ dọc của bìa sách */
+  object-fit: cover !important; /* Giúp ảnh không bị méo, tự động cắt góc đẹp */
+  border-radius: 4px;           /* Bo tròn nhẹ 4 góc ảnh cho tinh tế */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Tạo bóng đổ nhẹ cho ảnh nổi bật */
+}
+
+/* Căn giữa ô chứa ảnh và tên sách cho thẳng hàng dọc */
+.item-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 15px;                    /* Khoảng cách giữa ảnh và chữ */
+}
