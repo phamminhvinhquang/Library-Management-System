@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Lấy dữ liệu danh sách mượn từ Cơ sở dữ liệu MySQL
   function loadLoansFromServer() {
-    fetch("http://localhost:8086/api/loan/all", {
+    fetch("http://3.235.63.103:8086/api/loan/all", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     )
       return;
 
-    fetch(`http://localhost:8086/api/loan/detail/${detailId}/status`, {
+    fetch(`http://3.235.63.103:8086/api/loan/detail/${detailId}/status`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

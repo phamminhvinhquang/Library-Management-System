@@ -1,3 +1,4 @@
+// book_management.js
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("libraryToken");
   const userRole = localStorage.getItem("libraryRole");
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnAddBook = document.querySelector(".btn-add-book");
   const addBookModal = document.getElementById("addBookModal");
 
-  // Biến lưu trữ ảnh dưới dạng base64
+  // Biến lưu trữ ảnh dưới dạng base64 (Chỉ dùng để làm Preview hiển thị tạm trên giao diện)
   let base64CoverImage = "";
 
   btnAddBook.addEventListener("click", () => {
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addBookModal.style.display = "none";
   };
 
-  // Xử lý chọn ảnh và hiển thị preview
+  // Xử lý chọn ảnh và hiển thị preview (Giữ nguyên của bạn vì UX rất tốt)
   document
     .getElementById("addCoverFile")
     .addEventListener("change", function (e) {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (file) {
         const reader = new FileReader();
         reader.onload = function (event) {
-          base64CoverImage = event.target.result; // Chuyển sang chuỗi Base64
+          base64CoverImage = event.target.result; // Chuyển sang chuỗi Base64 để preview
           document.getElementById("addCoverPreview").src = base64CoverImage;
           document.getElementById("addCoverPreview").style.display = "block";
         };
@@ -46,24 +47,65 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================
   const addBookForm = document.getElementById("addBookForm");
   if (addBookForm) {
-    addBookForm.addEventListener("submit", function (e) {
+    // Đổi function thành async để dùng await cho S3
+    addBookForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const token = localStorage.getItem("libraryToken");
+      const fileInput = document.getElementById("addCoverFile");
+      const selectedFile = fileInput.files[0];
+      
+      // Mặc định nếu không up ảnh
+      let uploadedImageUrl = "images/default-cover.jpg";
+
+      // ---------------------------------------------------------
+      // BẮT ĐẦU ĐOẠN ĐÃ ĐƯỢC HOÀN THIỆN: UPLOAD ẢNH LÊN S3
+      // ---------------------------------------------------------
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        try {
+            const uploadRes = await fetch("http://3.235.63.103:8086/api/upload/image", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}` 
+                },
+                body: formData
+            });
+            
+            // SỬA LẠI ĐOẠN NÀY: Đọc chi tiết lỗi từ Backend Spring Boot gửi về
+            if (!uploadRes.ok) {
+                const errorData = await uploadRes.json();
+                throw new Error(errorData.message || "Lỗi không xác định từ máy chủ");
+            }
+            
+            const uploadData = await uploadRes.json();
+            uploadedImageUrl = uploadData.imageUrl; 
+        } catch (err) {
+            // Sẽ in ra đích danh lỗi: sai token, sai bucket name, hay Access Denied
+            alert(err.message); 
+            console.error(err);
+            return; 
+        }
+      }
+      // ---------------------------------------------------------
+      // KẾT THÚC ĐOẠN ĐÃ ĐƯỢC HOÀN THIỆN
+      // ---------------------------------------------------------
 
       // Gom toàn bộ dữ liệu từ các ô input (bao gồm ô Số lượng, Tác giả và Thể loại)
       const payload = {
         bookName: document.getElementById("addBookName").value,
-        authorName: document.getElementById("addAuthor").value, // Tên tác giả
+        authorName: document.getElementById("addAuthor").value, 
         yearPublish: document.getElementById("addYear").value,
-        categoryName: document.getElementById("addCategory").value, // Tên thể loại
+        categoryName: document.getElementById("addCategory").value, 
         publisher: document.getElementById("addPublisher").value,
-        quantity: document.getElementById("addQuantity").value, // Số lượng sách
+        quantity: document.getElementById("addQuantity").value, 
         bookDetail: document.getElementById("addDetail").value,
-        coverImage: base64CoverImage || "images/default-cover.jpg",
+        coverImage: uploadedImageUrl, // Đã thay bằng biến chứa link S3
       };
 
-      fetch("http://localhost:8086/api/book/add", {
+      fetch("http://3.235.63.103:8086/api/book/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,9 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAddModal(); // Đóng modal
             addBookForm.reset(); // Xóa trắng form
             document.getElementById("addCoverPreview").style.display = "none";
-            base64CoverImage = "";
+            base64CoverImage = ""; // Reset preview
+            
+            // Clear input file để không bị kẹt file cũ
+            document.getElementById("addCoverFile").value = ""; 
 
-            // Gọi lại hàm tải danh sách sách để hiển thị ngay cuốn sách vừa thêm lên bảng
+            // Gọi lại hàm tải danh sách sách
             if (typeof fetchBooks === "function") {
               fetchBooks();
             } else {
@@ -181,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // GỌI API LẤY DỮ LIỆU TỪ MYSQL
   // =========================================================
   function fetchBooks() {
-    fetch("http://localhost:8086/api/book/books", { method: "GET" })
+    fetch("http://3.235.63.103:8086/api/book/books", { method: "GET" })
       .then((response) => response.json())
       .then((data) => {
         allBooks = data;
@@ -247,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ) {
         coverUrl = book.coverImage;
       } else {
-        coverUrl = "http://localhost:8086" + book.coverImage;
+        coverUrl = "http://3.235.63.103:8086" + book.coverImage;
       }
     }
 
@@ -307,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bookDetail: document.getElementById("editDetail").value,
       };
 
-      fetch(`http://localhost:8086/api/book/${id}`, {
+      fetch(`http://3.235.63.103:8086/api/book/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -340,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
     )
       return;
 
-    fetch(`http://localhost:8086/api/book/${id}`, {
+    fetch(`http://3.235.63.103:8086/api/book/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

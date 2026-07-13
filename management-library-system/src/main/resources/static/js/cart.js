@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       // Thực hiện gửi dữ liệu lưu vào bảng Loan_Card và Loan_Detail của MySQL
-      fetch("http://localhost:8086/api/loan/create", {
+      fetch("http://3.235.63.103:8086/api/loan/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

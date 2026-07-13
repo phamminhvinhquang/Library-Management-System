@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Gọi API gửi Tên mới lên Server
-      fetch("http://localhost:8086/api/account/change-info", {
+      fetch("http://3.235.63.103:8086/api/account/change-info", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Gọi API Đổi Mật Khẩu
-      fetch("http://localhost:8086/api/account/change-password", {
+      fetch("http://3.235.63.103:8086/api/account/change-password", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

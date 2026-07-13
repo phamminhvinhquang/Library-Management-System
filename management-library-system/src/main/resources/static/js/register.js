@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       address,
     };
 
-    fetch("http://localhost:8086/api/auth/register", {
+    fetch("http://3.235.63.103:8086/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

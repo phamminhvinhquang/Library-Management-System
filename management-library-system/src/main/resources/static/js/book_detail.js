@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const API_URL = `http://localhost:8086/api/book/${bookId}`;
+  const API_URL = `http://3.235.63.103:8086/api/book/${bookId}`;
 
   // Hàm cập nhật số lượng hiển thị trên Badge giỏ hàng
   function updateCartBadge() {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
           coverUrl = book.coverImage;
         } else {
-          coverUrl = "http://localhost:8086" + book.coverImage;
+          coverUrl = "http://3.235.63.103:8086" + book.coverImage;
         }
       }
       document.getElementById("bookCover").src = coverUrl;

@@ -31,6 +31,13 @@
 	</properties>
 	<dependencies>
 
+		<!-- s3 -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.12.650</version> 
+		</dependency>
+
 		<!-- login -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. GỌI API LẤY DỮ LIỆU TỪ MYSQL
   // =========================================================
   function fetchAccounts() {
-    fetch("http://localhost:8086/api/account/all", {
+    fetch("http://3.235.63.103:8086/api/account/all", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function updateRole(id, newRole) {
-    fetch(`http://localhost:8086/api/account/${id}/role`, {
+    fetch(`http://3.235.63.103:8086/api/account/${id}/role`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     )
       return;
 
-    fetch(`http://localhost:8086/api/account/${id}`, {
+    fetch(`http://3.235.63.103:8086/api/account/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     })

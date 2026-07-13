@@ -1,3 +1,4 @@
+# docker-compose.yml
 version: "3.8"
 
 services:
@@ -27,9 +28,13 @@ services:
     ports:
       - "8086:8086"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/library_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=1176
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/library_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1176
+      AWS_BUCKET_NAME: library-system-storage-2026
+      AWS_REGION: ap-southeast-1
+      AWS_ACCESS_KEY: 
+      AWS_SECRET_KEY: 
     depends_on:
       db:
         condition: service_healthy

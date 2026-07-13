@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   let allBooks = [];
 
-  const API_URL = "http://localhost:8086/api/book/books";
+  const API_URL = "http://3.235.63.103:8086/api/book/books";
   const container = document.getElementById("categorizedBooksContainer");
 
   if (!container) return;
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ) {
             coverUrl = book.coverImage;
           } else {
-            coverUrl = "http://localhost:8086" + book.coverImage;
+            coverUrl = "http://3.235.63.103:8086" + book.coverImage;
           }
         }
 

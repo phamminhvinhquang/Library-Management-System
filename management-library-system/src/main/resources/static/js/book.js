@@ -58,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   // 2. KẾT NỐI API VÀ ĐỔ DỮ LIỆU ĐỘNG
   // ==========================================
-  const API_URL = "http://localhost:8086/api/book/books";
-  const LOAN_API_URL = "http://localhost:8086/api/loan/my-loans";
+  const API_URL = "http://3.235.63.103:8086/api/book/books";
+  const LOAN_API_URL = "http://3.235.63.103:8086/api/loan/my-loans";
   const booksGrid = document.getElementById("booksGrid");
   const token = localStorage.getItem("libraryToken");
 
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
           coverUrl = book.coverImage;
         } else {
-          coverUrl = "http://localhost:8086" + book.coverImage;
+          coverUrl = "http://3.235.63.103:8086" + book.coverImage;
         }
       }
 
