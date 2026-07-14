@@ -30,7 +30,6 @@ public class FileUploadService {
             fos.write(multipartFile.getBytes());
         }
 
-        // Đổi tên file để tránh trùng lặp
         String fileName = UUID.randomUUID() + "_" + file.getName();
 
         // Upload lên S3 và set quyền Public Read để ai cũng xem được ảnh

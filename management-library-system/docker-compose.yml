@@ -1,25 +1,7 @@
-# docker-compose.yml
+
 version: "3.8"
 
 services:
-  db:
-    image: mysql:8.0
-    container_name: library_mysql
-    restart: always
-    environment:
-      MYSQL_DATABASE: library_db
-      MYSQL_ROOT_PASSWORD: "1176"
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test:
-        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1176"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   backend:
     build:
       context: .
@@ -28,17 +10,10 @@ services:
     ports:
       - "8086:8086"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/library_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 1176
+      SPRING_DATASOURCE_URL: jdbc:mysql://library-db-rds.c6tw468eujha.us-east-1.rds.amazonaws.com:3306/library_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin123456
       AWS_BUCKET_NAME: library-system-storage-2026
-      AWS_REGION: ap-southeast-1
+      AWS_REGION: us-east-1
       AWS_ACCESS_KEY: 
       AWS_SECRET_KEY: 
-    depends_on:
-      db:
-        condition: service_healthy
-
-
-volumes:
-  mysql_data:

@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addBookForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      // người dùng chọn ảnh
       const token = localStorage.getItem("libraryToken");
       const fileInput = document.getElementById("addCoverFile");
       const selectedFile = fileInput.files[0];
@@ -59,10 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let uploadedImageUrl = "images/default-cover.jpg";
 
       // ---------------------------------------------------------
-      // BẮT ĐẦU ĐOẠN ĐÃ ĐƯỢC HOÀN THIỆN: UPLOAD ẢNH LÊN S3
+      // UPLOAD ẢNH LÊN S3
       // ---------------------------------------------------------
       if (selectedFile) {
-        const formData = new FormData();
+        const formData = new FormData(); //FormData sẽ chứa file ảnh
         formData.append("file", selectedFile);
 
         try {
